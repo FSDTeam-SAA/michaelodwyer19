@@ -4,9 +4,11 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { Menu, X } from "lucide-react";
+import { Apple, Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { FaApple } from "react-icons/fa";
+import { IoLogoGooglePlaystore } from "react-icons/io5";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,7 +23,7 @@ export function Header() {
 
   return (
     <motion.header
-      className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border"
+      className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border rounded-b-3xl"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -35,7 +37,13 @@ export function Header() {
             transition={{ duration: 0.2 }}
           >
             <Link href="/">
-              <Image src="images/logo.png" alt="Logo" width={200} height={80} className="dark:invert"/>
+              <Image
+                src="images/logo.png"
+                alt="Logo"
+                width={200}
+                height={80}
+                className="dark:invert"
+              />
             </Link>
           </motion.div>
 
@@ -63,9 +71,26 @@ export function Header() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <Button className="gradient-primary text-white hover:opacity-90 transition-opacity">
-                Get Started
+              <Button className="gradient-primary text-white hover:opacity-90 transition-opacity cursor-pointer">
+                Download App
               </Button>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex items-center gap-2"
+            >
+              <Link href="https://www.apps.apple.com/">
+                <Button className="text-white hover:opacity-90 transition-opacity cursor-pointer">
+                  <FaApple />
+                </Button>
+              </Link>
+              <Link href="https://play.google.com/store/">
+                <Button className="text-white hover:opacity-90 transition-opacity cursor-pointer">
+                  <IoLogoGooglePlaystore />
+                </Button>
+              </Link>
             </motion.div>
           </div>
 
