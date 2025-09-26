@@ -1,29 +1,144 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef } from "react"
-import { Button } from "@/components/ui/button"
-import { Check, Zap, Shield, Clock, Smartphone } from "lucide-react"
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
+import { Button } from "@/components/ui/button";
+import { Check, Zap, Shield, Clock, Smartphone } from "lucide-react";
+import { Badge } from "./ui/badge";
+import Image from "next/image";
 
-const features = ["Fast charging", "Sustainability", "Customer Care Service", "Return to any station"]
+const features = [
+  "Fast charging",
+  "Sustainability",
+  "Customer Care Service",
+  "Return to any station",
+];
 
 const specs = [
   { icon: Zap, label: "Power Output", value: "100W Max" },
   { icon: Shield, label: "Safety Rating", value: "IP65 Certified" },
   { icon: Clock, label: "Charging Speed", value: "0-80% in 30min" },
   { icon: Smartphone, label: "Compatibility", value: "Universal" },
-]
+];
 
 export function ProductShowcaseSection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-20 bg-gradient-to-br from-secondary/5 to-background" ref={ref}>
+    <section
+      className="py-20 bg-gradient-to-br from-secondary/5 to-background"
+      ref={ref}
+    >
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left Side - Product Showcase */}
+          {/* Left Side - Product Info */}
+          <motion.div
+            className="space-y-8"
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <div>
+              {/* Heading & Description */}
+              <motion.div
+                className="text-4xl lg:text-5xl font-bold mb-6 text-balance"
+                initial={{ opacity: 0, y: 30 }}
+                animate={
+                  isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
+                }
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                <Badge>About Us</Badge>
+              </motion.div>
+              <motion.h2
+                className="text-4xl lg:text-5xl font-bold mb-6 text-balance"
+                initial={{ opacity: 0, y: 30 }}
+                animate={
+                  isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
+                }
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                Charge Your Device's{" "}
+                <span className="text-gradient">Portable Fast & Reliable</span>
+              </motion.h2>
+              <motion.p
+                className="text-lg text-muted-foreground leading-relaxed mb-8"
+                initial={{ opacity: 0, y: 30 }}
+                animate={
+                  isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
+                }
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                Our advanced charging stations deliver unmatched performance
+                with cutting-edge technology designed for the modern world.
+                Experience the future of device charging.
+              </motion.p>
+            </div>
+
+            {/* Features List */}
+            <div className="grid grid-cols-2 gap-4">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={feature}
+                  className="flex items-center gap-3"
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={
+                    isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }
+                  }
+                  transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                >
+                  <div className="w-6 h-6 gradient-primary rounded-full flex items-center justify-center flex-shrink-0">
+                    <Check className="text-white" size={14} />
+                  </div>
+                  <span className="text-sm font-medium">{feature}</span>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Specifications */}
+            <div className="grid grid-cols-2 gap-6">
+              {specs.map((spec, index) => (
+                <motion.div
+                  key={spec.label}
+                  className="text-center p-4 bg-card/30 rounded-xl border border-border"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={
+                    isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                  }
+                  transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
+                  whileHover={{ y: -2 }}
+                >
+                  <div className="w-10 h-10 gradient-primary rounded-lg flex items-center justify-center mx-auto mb-3">
+                    {spec.icon && (
+                      <spec.icon className="text-white" size={20} />
+                    )}
+                  </div>
+                  <div className="text-sm font-semibold mb-1">{spec.value}</div>
+                  <div className="text-xs text-muted-foreground">
+                    {spec.label}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* CTA Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.6, delay: 1.0 }}
+            >
+              <Button
+                size="lg"
+                className="gradient-primary text-white hover:opacity-90 transition-opacity"
+              >
+                Request Installation
+              </Button>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Side - Product Showcase */}
           <motion.div
             className="relative"
             initial={{ opacity: 0, x: -50 }}
@@ -52,122 +167,19 @@ export function ProductShowcaseSection() {
                 transition={{ duration: 0.3 }}
               >
                 {/* Main Product */}
-                <div className="text-center mb-8">
-                  <div className="w-48 h-64 bg-gradient-to-b from-primary to-accent rounded-2xl mx-auto mb-6 flex items-center justify-center relative overflow-hidden">
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"
-                      animate={{ opacity: [0.2, 0.4, 0.2] }}
-                      transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
-                    />
-                    <div className="relative z-10 text-white text-center">
-                      <Zap size={48} className="mx-auto mb-4" />
-                      <div className="text-sm font-medium">Power Station</div>
-                      <div className="text-xs opacity-80">Pro Model</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Charging Ports */}
-                <div className="grid grid-cols-3 gap-4">
-                  {[1, 2, 3, 4, 5, 6].map((port, index) => (
-                    <motion.div
-                      key={port}
-                      className="bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl p-4 border border-primary/20 text-center"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.2 }}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                      style={{ transitionDelay: `${index * 0.1}s` }}
-                    >
-                      <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg mx-auto mb-2 flex items-center justify-center">
-                        <div className="w-3 h-3 bg-white rounded-sm" />
-                      </div>
-                      <div className="text-xs text-muted-foreground">Port {port}</div>
-                    </motion.div>
-                  ))}
-                </div>
+                <Image
+                  src="/images/about.png"
+                  alt="Product Showcase"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto max-w-lg mx-auto rounded-3xl shadow-xl"
+                  priority={true}
+                />
               </motion.div>
             </div>
-          </motion.div>
-
-          {/* Right Side - Product Info */}
-          <motion.div
-            className="space-y-8"
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <div>
-              <motion.h2
-                className="text-4xl lg:text-5xl font-bold mb-6 text-balance"
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                Charge Your Device's <span className="text-gradient">Portable Fast & Reliable</span>
-              </motion.h2>
-              <motion.p
-                className="text-lg text-muted-foreground leading-relaxed mb-8"
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
-                Our advanced charging stations deliver unmatched performance with cutting-edge technology designed for
-                the modern world. Experience the future of device charging.
-              </motion.p>
-            </div>
-
-            {/* Features List */}
-            <div className="grid grid-cols-2 gap-4">
-              {features.map((feature, index) => (
-                <motion.div
-                  key={feature}
-                  className="flex items-center gap-3"
-                  initial={{ opacity: 0, x: 30 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
-                  transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                >
-                  <div className="w-6 h-6 gradient-primary rounded-full flex items-center justify-center flex-shrink-0">
-                    <Check className="text-white" size={14} />
-                  </div>
-                  <span className="text-sm font-medium">{feature}</span>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Specifications */}
-            <div className="grid grid-cols-2 gap-6">
-              {specs.map((spec, index) => (
-                <motion.div
-                  key={spec.label}
-                  className="text-center p-4 bg-card/30 rounded-xl border border-border"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
-                  whileHover={{ y: -2 }}
-                >
-                  <div className="w-10 h-10 gradient-primary rounded-lg flex items-center justify-center mx-auto mb-3">
-                    {spec.icon && <spec.icon className="text-white" size={20} />}
-                  </div>
-                  <div className="text-sm font-semibold mb-1">{spec.value}</div>
-                  <div className="text-xs text-muted-foreground">{spec.label}</div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* CTA Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.6, delay: 1.0 }}
-            >
-              <Button size="lg" className="gradient-primary text-white hover:opacity-90 transition-opacity">
-                Request Installation
-              </Button>
-            </motion.div>
           </motion.div>
         </div>
       </div>
     </section>
-  )
+  );
 }
