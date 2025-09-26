@@ -1,40 +1,48 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef } from "react"
-import { MapPin, Zap, Smartphone } from "lucide-react"
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
+import Image from "next/image";
+import { url } from "inspector";
 
 const steps = [
   {
     number: "01",
-    title: "Find Nearest Power Up Station",
-    description:
-      "Locate the closest charging station using our mobile app or website. Our stations are strategically placed in high-traffic areas for your convenience.",
-    icon: MapPin,
-    color: "from-blue-500 to-cyan-500",
+    title: "Download the Charger Direct App",
+
+    icon: "/images/image1.png",
   },
   {
     number: "02",
-    title: "Scan Built Power Up Charger",
-    description:
-      "Simply scan the QR code on our charging station to start your charging session. Quick, secure, and hassle-free activation in seconds.",
-    icon: Zap,
-    color: "from-purple-500 to-pink-500",
+    title: "",
+    icon: "/images/image2.png",
   },
   {
     number: "03",
-    title: "Charge & Go",
-    description:
-      "Connect your device and enjoy fast, reliable charging. Monitor your charging progress and receive notifications when complete.",
-    icon: Smartphone,
-    color: "from-green-500 to-emerald-500",
+    title: "Find the nearest station on the map in the app",
+    icon: "/images/image3.png",
   },
-]
+  {
+    number: "04",
+    title: "Scan the QR code and take the powerbank",
+    icon: "/images/image4.jpg",
+  },
+  {
+    number: "05",
+    title: "Use it as long as you need",
+    icon: "/images/image5.png",
+  },
+  {
+    number: "06",
+    title: "Return the powerbank to any PowerUP station",
+    icon: "/images/image6.png",
+  },
+];
 
 export function HowItWorksSection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
     <section id="how-it-works" className="py-20 bg-secondary/10" ref={ref}>
@@ -60,13 +68,13 @@ export function HowItWorksSection() {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Get started with our charging stations in three simple steps. Fast, secure, and designed for your busy
-            lifestyle.
+            Get started with our charging stations in three simple steps. Fast,
+            secure, and designed for your busy lifestyle.
           </motion.p>
         </motion.div>
 
         {/* Steps Grid */}
-        <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 items-center overflow-x-hidden">
           {steps.map((step, index) => (
             <motion.div
               key={step.number}
@@ -88,10 +96,19 @@ export function HowItWorksSection() {
               <div className="relative z-10">
                 {/* Step Card */}
                 <motion.div
-                  className="bg-card border border-border rounded-2xl p-8 h-full hover:border-primary/50 transition-colors duration-300"
+                  className={`rounded-2xl flex w-full flex-col ${
+                    index % 2 === 0 ? "justify-end" : "justify-start"
+                  } p-8 h-full hover:border-primary/50 transition-colors duration-300 min-h-[450px]`}
                   whileHover={{ y: -5 }}
                   transition={{ duration: 0.3 }}
+                  style={{
+                    background: `url(${step.icon})`,
+                    backgroundSize: index === 1 || index === 3 ? "contain" : "cover",
+                    backgroundPosition: "center",
+                    // backgroundRepeat: "no-repeat",
+                  }}
                 >
+                  {" "}
                   {/* Step Number */}
                   <motion.div
                     className="flex items-center justify-center w-16 h-16 rounded-full gradient-primary text-white font-bold text-xl mb-6"
@@ -100,19 +117,10 @@ export function HowItWorksSection() {
                   >
                     {step.number}
                   </motion.div>
-
-                  {/* Icon */}
-                  <motion.div className="mb-6" whileHover={{ scale: 1.1 }} transition={{ duration: 0.3 }}>
-                    <div
-                      className={`inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-r ${step.color} text-white`}
-                    >
-                      <step.icon size={24} />
-                    </div>
-                  </motion.div>
-
                   {/* Content */}
-                  <h3 className="text-xl font-semibold mb-4 text-balance">{step.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{step.description}</p>
+                  <h3 className="text-xl font-semibold mb-4 text-balance">
+                    {step.title}
+                  </h3>
                 </motion.div>
               </div>
             </motion.div>
@@ -126,7 +134,10 @@ export function HowItWorksSection() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, delay: 1.2 }}
         >
-          <motion.p className="text-lg text-muted-foreground mb-6" whileHover={{ scale: 1.02 }}>
+          <motion.p
+            className="text-lg text-muted-foreground mb-6"
+            whileHover={{ scale: 1.02 }}
+          >
             Ready to experience the future of charging?
           </motion.p>
           <motion.button
@@ -139,5 +150,5 @@ export function HowItWorksSection() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
