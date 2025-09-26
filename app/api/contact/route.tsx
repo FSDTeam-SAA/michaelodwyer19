@@ -1,30 +1,31 @@
-import { type NextRequest, NextResponse } from "next/server"
-import nodemailer from "nodemailer"
+import { type NextRequest, NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, phone, company, message } = await request.json()
+    const { name, email, phone, company, message } = await request.json();
 
     // Validate required fields
     if (!name || !email || !message) {
-      return NextResponse.json({ error: "Name, email, and message are required" }, { status: 400 })
+      return NextResponse.json(
+        { error: "Name, email, and message are required" },
+        { status: 400 }
+      );
     }
 
     // Create transporter
-    const transporter = nodemailer.createTransporter({
-      host: process.env.SMTP_HOST,
-      port: Number.parseInt(process.env.SMTP_PORT || "587"),
-      secure: process.env.SMTP_PORT === "465",
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
       auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
+        user: process.env.NODEMAILER_USER_EMAIL,
+        pass: process.env.NODEMAILER_APP_PASSWORD,
       },
-    })
+    });
 
     // Email content
     const mailOptions = {
-      from: process.env.SMTP_FROM,
-      to: process.env.CONTACT_EMAIL,
+      from: `Charger Direct <${process.env.NODEMAILER_USER_EMAIL}>`,
+      to: process.env.NODEMAILER_USER_EMAIL,
       subject: `New Station Installation Request from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -65,14 +66,20 @@ export async function POST(request: NextRequest) {
         
         This email was sent from the Power Station website contact form.
       `,
-    }
+    };
 
     // Send email
-    await transporter.sendMail(mailOptions)
+    await transporter.sendMail(mailOptions);
 
-    return NextResponse.json({ message: "Email sent successfully" }, { status: 200 })
+    return NextResponse.json(
+      { message: "Email sent successfully" },
+      { status: 200 }
+    );
   } catch (error) {
-    console.error("Error sending email:", error)
-    return NextResponse.json({ error: "Failed to send email" }, { status: 500 })
+    console.error("Error sending email:", error);
+    return NextResponse.json(
+      { error: "Failed to send email" },
+      { status: 500 }
+    );
   }
 }
