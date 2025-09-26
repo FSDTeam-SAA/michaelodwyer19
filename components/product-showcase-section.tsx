@@ -30,6 +30,7 @@ export function ProductShowcaseSection() {
     <section
       className="py-20 bg-gradient-to-br from-secondary/5 to-background"
       ref={ref}
+      id="about"
     >
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16 items-center">

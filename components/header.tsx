@@ -18,6 +18,7 @@ export function Header() {
     { name: "How it Works", href: "#how-it-works" },
     { name: "Services", href: "#services" },
     { name: "FAQ", href: "#faq" },
+    { name: "About Us", href: "#about" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -36,7 +37,7 @@ export function Header() {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >
-            <Link href="/">
+            <Link href="#home">
               <Image
                 src="images/logo.png"
                 alt="Logo"
