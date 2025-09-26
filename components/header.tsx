@@ -1,13 +1,15 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { ThemeToggle } from "@/components/theme-toggle"
-import { Menu, X } from "lucide-react"
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { Menu, X } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
     { name: "Home", href: "#home" },
@@ -15,7 +17,7 @@ export function Header() {
     { name: "Services", href: "#services" },
     { name: "FAQ", href: "#faq" },
     { name: "Contact", href: "#contact" },
-  ]
+  ];
 
   return (
     <motion.header
@@ -32,10 +34,9 @@ export function Header() {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="w-8 h-8 gradient-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">P</span>
-            </div>
-            <span className="text-xl font-bold text-foreground">Power</span>
+            <Link href="/">
+              <Image src="images/logo.png" alt="Logo" width={200} height={80} className="dark:invert"/>
+            </Link>
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -62,14 +63,19 @@ export function Header() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <Button className="gradient-primary text-white hover:opacity-90 transition-opacity">Get Started</Button>
+              <Button className="gradient-primary text-white hover:opacity-90 transition-opacity">
+                Get Started
+              </Button>
             </motion.div>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-2">
             <ThemeToggle />
-            <button className="text-foreground" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            <button
+              className="text-foreground"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
@@ -103,5 +109,5 @@ export function Header() {
         )}
       </div>
     </motion.header>
-  )
+  );
 }
