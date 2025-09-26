@@ -1,13 +1,16 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, Play } from "lucide-react"
-import Image from "next/image"
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Play } from "lucide-react";
+import Image from "next/image";
 
 export function HeroSection() {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section
+      id="home"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+    >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/20" />
 
@@ -26,7 +29,8 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Charge Your Devices <span className="text-gradient">Portable</span>{" "}
+              Charge Your Devices{" "}
+              <span className="text-gradient">Portable</span>{" "}
               <span className="text-gradient">Fast & Reliable</span>
             </motion.h1>
 
@@ -36,8 +40,8 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              Experience the future of charging with our revolutionary portable charging stations. Fast, reliable, and
-              designed for modern life.
+              Experience the future of charging with our revolutionary portable
+              charging stations. Fast, reliable, and designed for modern life.
             </motion.p>
 
             <motion.div
@@ -46,13 +50,12 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              <Button size="lg" className="gradient-primary text-white hover:opacity-90 transition-opacity group">
+              <Button
+                size="lg"
+                className="gradient-primary text-white hover:opacity-90 transition-opacity group"
+              >
                 Get Started
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button size="lg" variant="outline" className="border-border hover:bg-secondary group bg-transparent">
-                <Play className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
-                Watch Demo
               </Button>
             </motion.div>
           </motion.div>
@@ -112,7 +115,11 @@ export function HeroSection() {
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+          transition={{
+            duration: 2,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+          }}
           className="text-muted-foreground text-sm flex flex-col items-center gap-2"
         >
           <span>Scroll to explore</span>
@@ -120,5 +127,5 @@ export function HeroSection() {
         </motion.div>
       </motion.div>
     </section>
-  )
+  );
 }

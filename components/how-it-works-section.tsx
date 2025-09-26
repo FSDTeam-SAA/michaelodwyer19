@@ -103,7 +103,8 @@ export function HowItWorksSection() {
                   transition={{ duration: 0.3 }}
                   style={{
                     background: `url(${step.icon})`,
-                    backgroundSize: index === 1 || index === 3 ? "contain" : "cover",
+                    backgroundSize:
+                      index === 1 || index === 3 ? "contain" : "cover",
                     backgroundPosition: "center",
                     // backgroundRepeat: "no-repeat",
                   }}
@@ -140,13 +141,6 @@ export function HowItWorksSection() {
           >
             Ready to experience the future of charging?
           </motion.p>
-          <motion.button
-            className="gradient-primary text-white px-8 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Find Stations Near You
-          </motion.button>
         </motion.div>
       </div>
     </section>
