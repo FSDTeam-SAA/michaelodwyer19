@@ -119,7 +119,7 @@ export function HowItWorksSection() {
                     {step.number}
                   </motion.div>
                   {/* Content */}
-                  <h3 className="text-xl font-semibold mb-4 text-balance">
+                  <h3 className="text-xl font-semibold mb-4 text-balance dark:text-black">
                     {step.title}
                   </h3>
                 </motion.div>

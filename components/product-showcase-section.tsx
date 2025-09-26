@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Check, Zap, Shield, Clock, Smartphone } from "lucide-react";
 import { Badge } from "./ui/badge";
 import Image from "next/image";
+import Link from "next/link";
 
 const features = [
   "Fast charging",
@@ -130,12 +131,14 @@ export function ProductShowcaseSection() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: 1.0 }}
             >
-              <Button
-                size="lg"
-                className="gradient-primary text-white hover:opacity-90 transition-opacity"
-              >
-                Request Installation
-              </Button>
+              <Link href="#contact">
+                <Button
+                  size="lg"
+                  className="gradient-primary text-white hover:opacity-90 transition-opacity cursor-pointer"
+                >
+                  Request Installation
+                </Button>
+              </Link>
             </motion.div>
           </motion.div>
 
