@@ -3,11 +3,17 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Battery, Zap, Shield, Clock, Smartphone, Wifi, LocateIcon } from "lucide-react";
+import {
+  Battery,
+  Shield,
+  Clock,
+  Smartphone,
+  Wifi,
+  LocateIcon,
+} from "lucide-react";
 import Image from "next/image";
 
 const benefits = [
-
   {
     icon: Shield,
     title: "Always charged devices",

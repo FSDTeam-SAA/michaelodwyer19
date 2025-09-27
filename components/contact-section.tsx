@@ -8,14 +8,7 @@ import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  MapPin,
-  Phone,
-  Mail,
-  Send,
-  CheckCircle,
-  AlertCircle,
-} from "lucide-react";
+import { Send, CheckCircle, AlertCircle } from "lucide-react";
 import Image from "next/image";
 
 export function ContactSection() {
@@ -68,31 +61,11 @@ export function ContactSection() {
       }
     } catch (error) {
       setSubmitStatus("error");
+      console.error("Error submitting form:", error);
     } finally {
       setIsSubmitting(false);
     }
   };
-
-  const contactInfo = [
-    {
-      icon: Phone,
-      title: "Phone Number",
-      value: "+1 (555) 123-4567",
-      description: "Mon-Fri 9am-6pm EST",
-    },
-    {
-      icon: Mail,
-      title: "Email Address",
-      value: "support@powerstation.com",
-      description: "We'll respond within 24 hours",
-    },
-    {
-      icon: MapPin,
-      title: "Office Location",
-      value: "123 Tech Street, San Francisco, CA 94105",
-      description: "Visit our headquarters",
-    },
-  ];
 
   return (
     <section
@@ -245,7 +218,9 @@ export function ContactSection() {
                     animate={{ opacity: 1, scale: 1 }}
                   >
                     <CheckCircle size={20} />
-                    <span>Thank you! We'll contact you within 24 hours.</span>
+                    <span>
+                      Thank you! We&apos;ll contact you within 24 hours.
+                    </span>
                   </motion.div>
                 )}
 

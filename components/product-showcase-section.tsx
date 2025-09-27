@@ -62,7 +62,7 @@ export function ProductShowcaseSection() {
                 }
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                Charge Your Device's{" "}
+                Charge Your Device&apos;s{" "}
                 <span className="text-gradient">Portable Fast & Reliable</span>
               </motion.h2>
               <motion.p

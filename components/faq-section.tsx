@@ -68,8 +68,8 @@ export function FAQSection() {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                Get answers to common questions about our charging stations, pricing, and services. Can't find what
-                you're looking for? Contact our support team.
+                Get answers to common questions about our charging stations, pricing, and services. Can&apos;t find what
+                you&apos;re looking for? Contact our support team.
               </motion.p>
             </div>
 
