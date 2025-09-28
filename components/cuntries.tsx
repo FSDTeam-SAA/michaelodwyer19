@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function CoverageMapUK() {
   return (
-    <section className="relative overflow-hidden lg:py-53">
+    <section className="relative overflow-hidden lg:py-53 py-16">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/20" />
 
@@ -17,14 +18,28 @@ export default function CoverageMapUK() {
             </p>
             <h2 className="text-4xl font-bold mt-2">BRITAIN IS COVERED</h2>
           </div>
-          <div className="w-full">
+          <div className="relative">
+            {/* Background glow */}
+            <motion.div
+              className="absolute inset-0 gradient-secondary rounded-3xl blur-3xl opacity-20 scale-110"
+              animate={{
+                scale: [1.1, 1.2, 1.1],
+                opacity: [0.2, 0.3, 0.2],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut",
+              }}
+            />
+
             <Image
-              src="/images/UK.png" // put the PNG file in your /public folder
-              alt="UK Coverage Map"
-              width={800}
-              height={800}
-              className="w-full aspect-square object-contain"
-              quality={100}
+              src="/images/UK.png"
+              alt="Services Image"
+              width={600}
+              height={600}
+              className="relative rounded-3xl z-10 mx-auto"
+              priority={true}
             />
           </div>
         </div>

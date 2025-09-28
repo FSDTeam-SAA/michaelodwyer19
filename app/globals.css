@@ -126,21 +126,40 @@
   }
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden !important;
   }
+}
+
+/* Emergency fix for header overflow */
+header {
+  max-width: 100vw !important;
+  overflow: hidden !important;
 }
 
 /* Added custom gradient utilities for the charging station theme */
 @layer utilities {
   .gradient-primary {
-    background: linear-gradient(135deg, oklch(0.65 0.25 264), oklch(0.55 0.25 220));
+    background: linear-gradient(
+      135deg,
+      oklch(0.65 0.25 264),
+      oklch(0.55 0.25 220)
+    );
   }
 
   .gradient-secondary {
-    background: linear-gradient(135deg, oklch(0.55 0.25 220), oklch(0.45 0.25 180));
+    background: linear-gradient(
+      135deg,
+      oklch(0.55 0.25 220),
+      oklch(0.45 0.25 180)
+    );
   }
 
   .text-gradient {
-    background: linear-gradient(135deg, oklch(0.65 0.25 264), oklch(0.55 0.25 220));
+    background: linear-gradient(
+      135deg,
+      oklch(0.65 0.25 264),
+      oklch(0.55 0.25 220)
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -148,10 +167,18 @@
 
   /* Added light mode specific gradient utilities */
   .gradient-primary-light {
-    background: linear-gradient(135deg, oklch(0.65 0.25 264 / 0.9), oklch(0.55 0.25 220 / 0.9));
+    background: linear-gradient(
+      135deg,
+      oklch(0.65 0.25 264 / 0.9),
+      oklch(0.55 0.25 220 / 0.9)
+    );
   }
 
   .gradient-secondary-light {
-    background: linear-gradient(135deg, oklch(0.55 0.25 220 / 0.8), oklch(0.45 0.25 180 / 0.8));
+    background: linear-gradient(
+      135deg,
+      oklch(0.55 0.25 220 / 0.8),
+      oklch(0.45 0.25 180 / 0.8)
+    );
   }
 }
