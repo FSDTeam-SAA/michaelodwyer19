@@ -6,6 +6,7 @@ import { FAQSection } from "@/components/faq-section"
 import { ProductShowcaseSection } from "@/components/product-showcase-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
+import CoverageMapUK from "@/components/cuntries"
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <HeroSection />
       <HowItWorksSection />
       <ServicesSection />
+      <CoverageMapUK />
       <FAQSection />
       <ProductShowcaseSection />
       <ContactSection />
